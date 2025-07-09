@@ -59,6 +59,11 @@ def main(train):
     # scheduler = optim.lr_scheduler.StepLR(optimizer,
             #step_size=params.decay_step, gamma=params.decay)
 
+    # 创建独立的调度器
+    ge_scheduler = optim.lr_scheduler.StepLR(ge_optimizer, step_size=params.decay_step, gamma=params.decay)
+    ga_scheduler = optim.lr_scheduler.StepLR(ga_optimizer, step_size=params.decay_step, gamma=params.decay)
+    de_scheduler = optim.lr_scheduler.StepLR(de_optimizer, step_size=params.decay_step, gamma=params.decay)
+
     # prepare for training ------------------------------------
 
     length = len(dataset);
@@ -128,6 +133,11 @@ def main(train):
                     outfile.write(log + "\n")
                     sys.stdout.flush()   
                     outfile.flush()
+
+#
+            ge_scheduler.step()
+            ga_scheduler.step()
+            de_scheduler.step()
 
             if epoch % config["save"]["step"] == 0:
                 torch.save(net.state_dict(), os.path.join(savepath, f"Iter_{epoch}_{save.name}.pt"))

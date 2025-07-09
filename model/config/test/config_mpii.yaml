@@ -1,11 +1,11 @@
 ---
 load:
-    begin: 5
-    end: 5
-    steps: 1
+    begin: 10
+    end: 100
+    steps: 10
 data: 
-    image: "/home/chengyihua/dataset/FaceBased/MPIIFaceGaze/Image"
-    label: "/home/chengyihua/dataset/FaceBased/MPIIFaceGaze/Label"
+    image: "D:/gaze_estimate/dataset/FaceBased/MPIIFaceGaze/Image"
+    label: "D:/gaze_estimate/dataset/FaceBased/MPIIFaceGaze/Label"
     name: mpii
     header: True
     isFolder: True
